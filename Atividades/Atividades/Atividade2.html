@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade 2</title>
+  <style>
+    body {
+      background-color: #f0f0e8;
+      text-align: center;
+    }
+
+    p {
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Declaração de imposto de renda</h1>
+  <div id="cadastro"></div>
+
+  <script>
+    let nome
+    let CPF
+    let rendaAnual
+    let dependentes
+    let totalImposto
+    let rendaLiquida
+
+    const cadastro = document.getElementById("cadastro")
+    let pergunta = prompt("Quer cadastrar um novo contribuinte? \n [ 1 ] Sim \n [ 0 ] Não ")
+    while (!(pergunta == 1 || pergunta == 0) || !pergunta) {
+      alert("Digite apenas 1 ou 0")
+      pergunta = prompt("Digite 1 para cadastrar um novo contribuinte ou 0 para sair")
+    }
+
+    while (pergunta == 1) {
+      nome = prompt("Digite o nome do contribuinte.")
+      CPF = prompt("Digite 0 CPF do contribuinte.")
+      rendaAnual = Number(prompt("Digite a renda anual em R$ do contribuinte."))
+      while (isNaN(rendaAnual) || !rendaAnual) {
+        rendaAnual = Number(prompt("Digite a renda anual em R$ do contribuinte."))
+      }
+      dependentes = Number(prompt("Digite o numero de dependentes do contribuinte."))
+      while (isNaN(dependentes) || !dependentes) {
+        dependentes = Number(prompt("Digite o numero de dependentes do contribuinte."))
+      }
+
+      rendaLiquida = rendaAnual - (dependentes * 110)
+
+      switch (true) {
+        case rendaLiquida > 10000:
+          totalImposto = rendaLiquida * (15 / 100) + " reais de imposto a ser pago"
+          break;
+        case rendaLiquida > 5000:
+          totalImposto = rendaLiquida * (10 / 100) + " reais de imposto a ser pago"
+          break;
+        case rendaLiquida > 900:
+          totalImposto = rendaLiquida * (5 / 100) + " reais de imposto a ser pago"
+          break;
+        case rendaLiquida <= 900:
+          totalImposto = "Você está isento do imposto"
+          break;
+        default:
+          break;
+      }
+
+      pergunta = prompt("Quer cadastrar um novo contribuinte? \n [ 1 ] Sim \n [ 0 ] Não ")
+      while (!(pergunta == 1 || pergunta == 0) || !pergunta) {
+        alert("Digite apenas 1 ou 0")
+        pergunta = prompt("Digite 1 para cadastrar um novo contribuinte ou 0 para sair")
+      }
+      cadastro.innerHTML += "</br> <hr/>Nome: " + nome +
+      "</br>CPF: " + CPF +
+      " </br>Renda Anual: R$" + rendaAnual +
+      "</br> renda Líquida: R$" + rendaLiquida +
+      "</br> Total de imposto: R$" + totalImposto
+    }
+
+  </script>
+</body>
+
+</html>

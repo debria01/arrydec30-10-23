@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 1</title>
+    <style>
+        body {
+            background-color: #f0f0e8;
+            text-align: center;
+        }
+
+        p {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Cadastramento de disciplinas</h1>
+    <div id="cadastro"></div>
+
+    <script>
+        let nomeDisciplina
+        let descricaoDisciplina
+        let frequenciaDisciplina
+        let notaDisciplina
+
+        const cadastro = document.getElementById("cadastro")
+        let pergunta = prompt("Quer cadastrar os registros da disciplina? \n [ 1 ] Sim \n [ 0 ] Não ")
+        while (!(pergunta == 1 || pergunta == 0) || !pergunta) {
+            alert("Digite apenas 1 ou 0")
+            pergunta = prompt("Digite 1 para cadastrar os registros da disciplina ou 0 para sair")
+        }
+
+        while (pergunta == 1) {
+            nomeDisciplina = prompt("Digite a disciplina.")
+            descricaoDisciplina = prompt("Digite a descrição da disciplina.")
+            frequenciaDisciplina = prompt("Digite a frequência mínima da disciplina.")
+            notaDisciplina = Number(prompt("Digite a nota mínima da disciplina."))
+            while (isNaN(notaDisciplina) || !notaDisciplina){
+            notaDisciplina = Number(prompt("Digite a nota mínima da disciplina.")) }
+
+            pergunta = prompt("Quer cadastrar os registros da disciplina? \n [ 1 ] Sim \n [ 0 ] Não ")
+            while (!(pergunta == 1 || pergunta == 0) || !pergunta) {
+                alert("Digite apenas 1 ou 0")
+                pergunta = prompt("Digite 1 para cadastrar os registros da disciplina ou 0 para sair")
+            }
+            cadastro.innerHTML += "</br> <hr/>Disciplina: " + nomeDisciplina +
+            "</br>Descrição: " + descricaoDisciplina +
+            " </br>Frequência Mínima: " + frequenciaDisciplina +
+            "</br> Nota mínima: " + notaDisciplina
+        }
+
+    </script>
+</body>
+
+</html>

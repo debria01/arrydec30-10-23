@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade 3</title>
+  <style>
+    body {
+      background-color: #f0f0e8;
+      text-align: center;
+    }
+
+    p {
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Controle de qualidade</h1>
+  <div id="total"></div>
+  <div id="cadastro"></div>
+
+  <script>
+
+    let numeroPecas = 0
+    let pecaAtual = 0
+    let pecasAprovadas = 0
+    let pecasReprovadas = 0
+    let texto = ''
+
+    const cadastro = document.getElementById("cadastro")
+    const total = document.getElementById("total")
+
+    numeroPecas = prompt("Quantas peças quer cadastrar?")
+    while (!Number.isInteger(Number(numeroPecas)) || !numeroPecas) {
+      alert("Digite apenas números")
+      numeroPecas = prompt("Quantas peças quer cadastrar?")
+    }
+    while (numeroPecas > 0) {
+
+      pecaAtual++
+
+      let codigoPeca = prompt("Peça numero " + pecaAtual + "\n\n Digite o código da peça: (Ex: 1234)")
+      let qualidade = prompt("Digite 1 para Aprovado e 0 para Reprovado")
+      while (!(qualidade == 1 || qualidade == 0) || !qualidade) {
+        alert("Digite apenas 1 ou 0")
+        qualidade = Number(prompt("Digite 1 para Aprovado e 0 para Reprovado"))
+      }
+
+      numeroPecas--
+      texto = qualidade == 1 ? "Aprovado" : "Reprovado"
+      qualidade == 1 ? pecasAprovadas++ : pecasReprovadas++
+
+      total.innerHTML = "Peças totais: " + pecaAtual +
+      "</br>Aprovados: " + pecasAprovadas +
+      "<br> Reprovados: " + pecasReprovadas
+      cadastro.innerHTML +=
+      "</br><hr>Código da peça: " + codigoPeca +
+      " </br>qualidade da peça: " + texto
+    }
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade 4</title>
+  <style>
+    body {
+      background-color: #f0f0e8;
+      text-align: center;
+    }
+
+    p {
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Avaliação de alunos</h1>
+  <div id="turma"></div>
+  <div id="cadastro"></div>
+
+  <script>
+
+    let numeroAlunos = 70
+    let alunoNumero = 0
+    let matricula
+    let prova01
+    let prova02
+    let prova03
+    let media
+    let frequenciaDisciplina
+    let aprovados = 0
+    let reprovados = 0
+    let totalMediaTurma = 0
+    let totalFrequenciaTurma = 0
+    let mediaTurma
+    let frequenciaTurma
+
+    const cadastro = document.getElementById("cadastro")
+    const turma = document.getElementById("turma")
+
+    while (numeroAlunos > 0) {
+
+      numeroAlunos--
+      alunoNumero++
+
+      matricula = prompt("Digite a matrícula do aluno " + alunoNumero + ".")
+
+      prova01 = Number(prompt("Digite a primeira nota do aluno " + alunoNumero + "."))
+      while (prova01 < 0 || isNaN(prova01) || !prova01 || prova01 > 10) {
+        prova01 = Number(prompt("Digite a primeira nota do aluno " + alunoNumero + "."))
+      }
+      prova02 = Number(prompt("Digite a segunda nota do aluno " + alunoNumero + "."))
+      while (prova02 < 0 || isNaN(prova02) || !prova02 || prova02 > 10) {
+        prova02 = Number(prompt("Digite a segunda nota do aluno " + alunoNumero + "."))
+      }
+      prova03 = Number(prompt("Digite a terceira nota do aluno " + alunoNumero + "."))
+      while (prova03 < 0 || isNaN(prova03) || !prova03 || prova03 > 10) {
+        prova03 = Number(prompt("Digite a terceira nota do aluno " + alunoNumero + "."))
+      }
+
+      media = +((prova01 + prova02 + prova03) / 3).toFixed(2)
+
+      frequenciaDisciplina = Number(prompt("Digite a frequência do aluno " + alunoNumero + "."))
+      while (frequenciaDisciplina < 0 || isNaN(frequenciaDisciplina) || !frequenciaDisciplina || frequenciaDisciplina > 100) {
+        frequenciaDisciplina = Number(prompt("Digite a frequência do aluno " + alunoNumero + "."))
+      }
+
+      if (media >= 7 && frequenciaDisciplina >= 80) {
+        aprovados++
+        cadastro.innerHTML += "</br><hr>Matrícula: " + matricula + "</br>Média: " + media + "</br>Frequência: " + frequenciaDisciplina + "</br>Resultado: Aprovado"
+      } else {
+        reprovados++
+        cadastro.innerHTML += "</br><hr>Matrícula: " + matricula + "</br>Média: " + media + "</br>Frequência: " + frequenciaDisciplina + "</br>Resultado: Reprovado"
+      }
+
+      totalMediaTurma += media
+      totalFrequenciaTurma += frequenciaDisciplina
+    }
+
+    mediaTurma = (totalMediaTurma / alunoNumero).toFixed(2)
+    frequenciaTurma = (totalFrequenciaTurma / alunoNumero)
+
+    turma.innerHTML = "</br><hr> Média da turma: " + mediaTurma +
+    "</br> Frequência da turma: " + frequenciaTurma +
+    "%</br> Alunos aprovados: " + aprovados +
+    "</br> Alunos reprovados: " + reprovados
+
+  </script>
+
+</body>
+
+</html>
